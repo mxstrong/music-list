@@ -6,9 +6,9 @@ import java.util.List;
 
 @Data
 public class Album {
-    public String name;
-    public Artist artist;
-    public List<Song> songs;
+    private String name;
+    private Artist artist;
+    private List<Song> songs;
 
     public Album(String name, Artist artist) {
         this.name = name;

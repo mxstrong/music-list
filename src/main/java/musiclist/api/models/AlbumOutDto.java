@@ -2,6 +2,7 @@ package musiclist.api.models;
 
 import lombok.AllArgsConstructor;
 import musiclist.data.models.Album;
+import musiclist.data.models.Song;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,6 @@ public class AlbumOutDto {
     public List<String> songs;
 
     public static AlbumOutDto fromAlbum(Album album) {
-        return new AlbumOutDto(album.name, album.artist.name, album.songs.stream().map(song -> song.title).collect(Collectors.toList()));
+        return new AlbumOutDto(album.getName(), album.getArtist().getName(), album.getSongs().stream().map(Song::getTitle).collect(Collectors.toList()));
     }
 }

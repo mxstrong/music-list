@@ -19,29 +19,34 @@ public class SongCollection {
         artists = new ArrayList<>();
         albums = new ArrayList<>();
     }
-    public void addSong(Song song) {
+    public void addSong(String name, String albumName, String artistName) {
+        var album = albums.stream().filter(a -> a.getName().equals(albumName)).findAny();
+        var artist = artists.stream().filter(a -> a.getName().equals(artistName)).findAny();
+        if (album.isEmpty() || artist.isEmpty()) {
+            return;
+        }
+        var song = new Song(name, artist.get(), album.get());
         songs.add(song);
-        var album = albums.stream().filter(a -> a.equals(song.album)).findAny();
-        if (album.isPresent()) {
-            if (album.get().songs == null) {
-                album.get().songs = new ArrayList<>();
-            }
-            album.get().songs.add(song);
+        if (album.get().getSongs() == null) {
+            album.get().setSongs(new ArrayList<>());
         }
+        album.get().getSongs().add(song);
     }
 
-    public void addArtist(Artist artist) {
-        artists.add(artist);
+    public void addArtist(String name) {
+        artists.add(new Artist(name));
     }
 
-    public void addAlbum(Album album) {
+    public void addAlbum(String name, String artistName) {
+        var artist = artists.stream().filter(a -> a.getName().equals(artistName)).findFirst();
+        if (artist.isEmpty()) {
+            return;
+        }
+        var album = new Album(name, artist.get());
         albums.add(album);
-        var artist = artists.stream().filter(a -> a.equals(album.artist)).findFirst();
-        if (artist.isPresent()) {
-            if (artist.get().albums == null) {
-                artist.get().albums = new ArrayList<>();
-            }
-            artist.get().albums.add(album);
+        if (artist.get().getAlbums() == null) {
+            artist.get().setAlbums(new ArrayList<>());
         }
+        artist.get().getAlbums().add(album);
     }
 }

@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 public class Artist {
-    public String name;
-    public List<Album> albums;
+    private String name;
+    private List<Album> albums;
 
     public Artist(String name) {
         this.name = name;

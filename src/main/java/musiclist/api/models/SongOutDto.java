@@ -10,6 +10,6 @@ public class SongOutDto {
     public String album;
 
     public static SongOutDto fromSong(Song song) {
-        return new SongOutDto(song.title, song.artist.name, song.album.name);
+        return new SongOutDto(song.getTitle(), song.getArtist().getName(), song.getAlbum().getName());
     }
 }

@@ -6,7 +6,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Song {
-    public String title;
-    public Artist artist;
-    public Album album;
+    private String title;
+    private Artist artist;
+    private Album album;
 }
