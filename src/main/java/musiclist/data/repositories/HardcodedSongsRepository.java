@@ -39,4 +39,10 @@ public class HardcodedSongsRepository {
                 .filter(album -> artist == null || album.artist.name.toLowerCase().contains(artist.toLowerCase()) || artist.toLowerCase().contains(album.artist.name.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    public List<Artist> getArtists(String name) {
+        return songCollection.getArtists().stream()
+                .filter(artist -> name == null || artist.name.toLowerCase().contains(name.toLowerCase()) || name.toLowerCase().contains(artist.name.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }

@@ -1,8 +1,10 @@
 package musiclist.api.controllers;
 
 import musiclist.api.models.AlbumOutDto;
+import musiclist.api.models.ArtistOutDto;
 import musiclist.api.models.SongOutDto;
 import musiclist.business.services.AlbumsService;
+import musiclist.business.services.ArtistsService;
 import musiclist.business.services.SongsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +17,12 @@ import java.util.stream.Collectors;
 public class MusicListController {
     private final SongsService songsService;
     private final AlbumsService albumsService;
+    private final ArtistsService artistsService;
 
-    public MusicListController(SongsService songsService, AlbumsService albumsService) {
+    public MusicListController(SongsService songsService, AlbumsService albumsService, ArtistsService artistsService) {
         this.songsService = songsService;
         this.albumsService = albumsService;
+        this.artistsService = artistsService;
     }
 
     @GetMapping("/songs")
@@ -29,5 +33,10 @@ public class MusicListController {
     @GetMapping("/albums")
     public List<AlbumOutDto> findAlbums(@RequestParam(required = false) String name, @RequestParam(required = false) String artist) {
         return albumsService.getAlbums(name, artist).stream().map(AlbumOutDto::fromAlbum).collect(Collectors.toList());
+    }
+
+    @GetMapping("/artists")
+    public List<ArtistOutDto> findArtists(@RequestParam(required = false) String name) {
+        return artistsService.getArtists(name).stream().map(ArtistOutDto::fromArtist).collect(Collectors.toList());
     }
 }
