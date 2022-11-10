@@ -1,5 +1,8 @@
 package musiclist.data.repositories;
 
+import musiclist.api.models.AlbumDto;
+import musiclist.api.models.ArtistDto;
+import musiclist.api.models.SongDto;
 import musiclist.data.models.Album;
 import musiclist.data.models.Artist;
 import musiclist.data.models.Song;
@@ -46,5 +49,29 @@ public class HardcodedSongsRepository {
         return songCollection.getArtists().stream()
                 .filter(artist -> name == null || artist.getName().toLowerCase().contains(name.toLowerCase()) || name.toLowerCase().contains(artist.getName().toLowerCase()))
                 .collect(Collectors.toList());
+    }
+
+    public Artist addArtist(ArtistDto artistDto) {
+        return songCollection.addArtist(artistDto.name);
+    }
+
+    public Album addAlbum(AlbumDto albumDto) {
+        return songCollection.addAlbum(albumDto.name, albumDto.artistName);
+    }
+
+    public Song addSong(SongDto songDto) {
+        return songCollection.addSong(songDto.title, songDto.albumName, songDto.artistName);
+    }
+
+    public void deleteSong(String name) {
+        songCollection.deleteSong(name);
+    }
+
+    public void deleteAlbum(String name) {
+        songCollection.deleteAlbum(name);
+    }
+
+    public void deleteArtist(String name) {
+        songCollection.deleteArtist(name);
     }
 }

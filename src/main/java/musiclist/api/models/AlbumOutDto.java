@@ -14,6 +14,6 @@ public class AlbumOutDto {
     public List<String> songs;
 
     public static AlbumOutDto fromAlbum(Album album) {
-        return new AlbumOutDto(album.getName(), album.getArtist().getName(), album.getSongs().stream().map(Song::getTitle).collect(Collectors.toList()));
+        return new AlbumOutDto(album.getName(), album.getArtist().getName(), album.getSongs() == null ? null : album.getSongs().stream().map(Song::getTitle).collect(Collectors.toList()));
     }
 }

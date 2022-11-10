@@ -1,14 +1,10 @@
 package musiclist.api.controllers;
 
-import musiclist.api.models.AlbumOutDto;
-import musiclist.api.models.ArtistOutDto;
-import musiclist.api.models.SongOutDto;
-import musiclist.business.services.AlbumsService;
-import musiclist.business.services.ArtistsService;
-import musiclist.business.services.SongsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import musiclist.api.models.*;
+import musiclist.application.services.AlbumsService;
+import musiclist.application.services.ArtistsService;
+import musiclist.application.services.SongsService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,5 +34,35 @@ public class MusicListController {
     @GetMapping("/artists")
     public List<ArtistOutDto> findArtists(@RequestParam(required = false) String name) {
         return artistsService.getArtists(name).stream().map(ArtistOutDto::fromArtist).collect(Collectors.toList());
+    }
+
+    @PostMapping("/songs")
+    public SongOutDto addSong(@RequestBody SongDto songDto) {
+        return SongOutDto.fromSong(songsService.addSong(songDto));
+    }
+
+    @PostMapping("/albums")
+    public AlbumOutDto addAlbum(@RequestBody AlbumDto albumDto) {
+        return AlbumOutDto.fromAlbum(albumsService.addAlbum(albumDto));
+    }
+
+    @PostMapping("/artists")
+    public ArtistOutDto addArtist(@RequestBody ArtistDto artistDto) {
+        return ArtistOutDto.fromArtist(artistsService.addArtist(artistDto));
+    }
+
+    @DeleteMapping("/songs/{name}")
+    public void deleteSong(@PathVariable String name) {
+        songsService.deleteSong(name);
+    }
+
+    @DeleteMapping("/albums/{name}")
+    public void deleteAlbum(@PathVariable String name) {
+        albumsService.deleteAlbum(name);
+    }
+
+    @DeleteMapping("/artists/{name}")
+    public void deleteArtist(@PathVariable String name) {
+        artistsService.deleteArtist(name);
     }
 }

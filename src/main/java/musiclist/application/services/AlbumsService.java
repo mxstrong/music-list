@@ -1,5 +1,6 @@
-package musiclist.business.services;
+package musiclist.application.services;
 
+import musiclist.api.models.AlbumDto;
 import musiclist.data.models.Album;
 import musiclist.data.repositories.HardcodedSongsRepository;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,13 @@ public class AlbumsService {
 
     public List<Album> getAlbums(String name, String artist) {
         return songsRepository.getAlbums(name, artist);
+    }
+
+    public Album addAlbum(AlbumDto albumDto) {
+        return songsRepository.addAlbum(albumDto);
+    }
+
+    public void deleteAlbum(String name) {
+        songsRepository.deleteAlbum(name);
     }
 }

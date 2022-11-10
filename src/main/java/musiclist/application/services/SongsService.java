@@ -1,5 +1,6 @@
-package musiclist.business.services;
+package musiclist.application.services;
 
+import musiclist.api.models.SongDto;
 import musiclist.data.models.Song;
 import musiclist.data.repositories.HardcodedSongsRepository;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,13 @@ public class SongsService {
 
     public List<Song> getSongsBySearch(String name, String album, String artist) {
         return songsRepository.getSongsBySearch(name, album, artist);
+    }
+
+    public Song addSong(SongDto songDto) {
+        return songsRepository.addSong(songDto);
+    }
+
+    public void deleteSong(String name) {
+        songsRepository.deleteSong(name);
     }
 }
