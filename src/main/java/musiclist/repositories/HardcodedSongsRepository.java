@@ -1,19 +1,17 @@
-package musiclist.data.repositories;
+package musiclist.repositories;
 
-import musiclist.api.models.AlbumDto;
-import musiclist.api.models.ArtistDto;
-import musiclist.api.models.SongDto;
-import musiclist.data.models.Album;
-import musiclist.data.models.Artist;
-import musiclist.data.models.Song;
-import org.springframework.context.annotation.Scope;
+import musiclist.dtos.AlbumDto;
+import musiclist.dtos.ArtistDto;
+import musiclist.dtos.SongDto;
+import musiclist.models.Album;
+import musiclist.models.Artist;
+import musiclist.models.Song;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-@Scope("singleton")
 public class HardcodedSongsRepository {
     private final SongCollection songCollection;
 

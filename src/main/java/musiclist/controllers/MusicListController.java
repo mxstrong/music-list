@@ -1,9 +1,9 @@
-package musiclist.api.controllers;
+package musiclist.controllers;
 
-import musiclist.api.models.*;
-import musiclist.application.services.AlbumsService;
-import musiclist.application.services.ArtistsService;
-import musiclist.application.services.SongsService;
+import musiclist.dtos.*;
+import musiclist.services.AlbumsService;
+import musiclist.services.ArtistsService;
+import musiclist.services.SongsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

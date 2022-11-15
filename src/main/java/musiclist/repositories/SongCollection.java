@@ -1,15 +1,13 @@
-package musiclist.data.repositories;
+package musiclist.repositories;
 
-import lombok.Getter;
-import musiclist.data.models.Album;
-import musiclist.data.models.Artist;
-import musiclist.data.models.Song;
+import musiclist.models.Album;
+import musiclist.models.Artist;
+import musiclist.models.Song;
 import org.springframework.context.annotation.Scope;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Scope("singleton")
 public class SongCollection {
     private final List<Song> songs;
@@ -69,5 +67,17 @@ public class SongCollection {
         getSongs().removeIf(song -> song.getArtist().getName().equalsIgnoreCase(name));
         getAlbums().removeIf(album -> album.getArtist().getName().equalsIgnoreCase(name));
         getArtists().removeIf(artist -> artist.getName().equalsIgnoreCase(name));
+    }
+
+    public List<Song> getSongs() {
+        return this.songs;
+    }
+
+    public List<Artist> getArtists() {
+        return this.artists;
+    }
+
+    public List<Album> getAlbums() {
+        return this.albums;
     }
 }

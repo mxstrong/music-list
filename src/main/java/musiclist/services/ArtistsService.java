@@ -1,8 +1,8 @@
-package musiclist.application.services;
+package musiclist.services;
 
-import musiclist.api.models.ArtistDto;
-import musiclist.data.models.Artist;
-import musiclist.data.repositories.HardcodedSongsRepository;
+import musiclist.dtos.ArtistDto;
+import musiclist.models.Artist;
+import musiclist.repositories.HardcodedSongsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
